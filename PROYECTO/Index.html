@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Fotografías - OS-CAR Fotografía</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+    }
+
+    /* Encabezado */
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Información de la empresa */
+    .company-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .company-info h2 {
+      color: #333;
+    }
+
+    /* Información de contacto */
+    .contact-info {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .contact-info h3 {
+      color: #333;
+    }
+
+    .contact-info p {
+      color: #666;
+      margin: 5px 0;
+    }
+
+    /* Galería */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    /* Calendario */
+    .calendar {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 10px;
+    }
+
+    .calendar-header {
+      text-align: center;
+    }
+
+    .calendar-cell {
+      background-color: #ffcccc; /* Rojo */
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .weekend {
+      background-color: #ccffcc; /* Verde */
+    }
+
+    /* Formulario de citas */
+    #appointment-form {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    #appointment-form input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    #appointment-form textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    #appointment-form button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>OS-CAR FOTOGRAFÍA</h1>
+
+  <div class="container">
+    <div class="company-info">
+      <h2>Galería</h2>
+    </div>
+
+    <div class="contact-info">
+      <h3>Información de contacto</h3>
+      <p>Eddie Osvaldo</p>
+      <p>Teléfono: 9934038630</p>
+      <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61554374003677" target="_blank" style="color: blue;">OS-CAR Fotografía</a></p>
+    </div>
+
+    <div class="gallery">
+      <img src="foto1.jpg" alt="Fotografía 1">
+      <img src="foto2.jpg" alt="Fotografía 2">
+      <img src="foto3.jpg" alt="Fotografía 3">
+      <img src="foto4.jpg" alt="Fotografía 4">
+      <img src="foto5.jpg" alt="Fotografía 5">
+      <img src="foto6.jpg" alt="Fotografía 6">
+      <!-- Agrega más imágenes aquí -->
+    </div>
+
+    <div class="calendar">
+      <div class="calendar-header">Lun</div>
+      <div class="calendar-header">Mar</div>
+      <div class="calendar-header">Mié</div>
+      <div class="calendar-header">Jue</div>
+      <div class="calendar-header">Vie</div>
+      <div class="calendar-header weekend">Sáb</div>
+      <div class="calendar-header weekend">Dom</div>
+      <!-- Espacios vacíos para días que no pertenecen al mes actual -->
+      <div class="calendar-cell"></div>
+      <div class="calendar-cell"></div>
+      <div class="calendar-cell"></div>
+      <div class="calendar-cell"></div>
+      <div class="calendar-cell"></div>
+      <div class="calendar-cell selectable" onclick="addAppointment(1)">1</div>
+      <div class="calendar-cell weekend selectable" onclick="addAppointment(2)">2</div>
+      <!-- Continúa con los días del mes -->
+      <div class="calendar-cell selectable" onclick="addAppointment(3)">3</div>
+      <div class="calendar-cell selectable" onclick="addAppointment(4)">4</div>
+      <div class="calendar-cell selectable" onclick="addAppointment(5)">5</div>
+      <div class="calendar-cell selectable" onclick="addAppointment(6)">6</div>
+      <div class="calendar-cell selectable" onclick="addAppointment(7)">7</div>
+      <div class="calendar-cell weekend selectable" onclick="addAppointment(8)">8</div>
+      <div class="calendar-cell weekend selectable" onclick="addAppointment(9)">9</div>
+      <!-- Asegúrate de agregar todos los días hasta el 31, siguiendo el patrón anterior -->
+      <!-- El código para los días restantes se ha omitido por brevedad -->
+    </div>
+
+    <div id="appointment-form">
+      <h3>Detalles de la cita</h3>
+      <form>
+        <input type="text" id="fullname" placeholder="Nombre completo" required><br>
+        <input type="tel" id="phone" placeholder="Número de teléfono" required><br>
+        <input type="text" id="time" placeholder="Horario deseado" required><br>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function addAppointment(day) {
+      alert('Se ha añadido una cita para el día ' + day);
+      document.getElementById('appointment-form').style.display = 'block';
+      // Aquí puedes agregar más lógica para manejar la selección de la fecha y el formulario de la cita.
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
